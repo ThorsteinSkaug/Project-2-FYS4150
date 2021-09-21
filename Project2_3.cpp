@@ -46,13 +46,13 @@ int main()
   arma::vec lambda(N);
   arma::vec v(N);
   for(int i=1; i<=N; i++){
-    lambda(i) = d + 2*a*cos((i*M_PI)/(N+1));
-    v(i) = (sin((i*i*M_PI)/(N+1)));
+    lambda(i-1) = d + 2*a*cos((i*M_PI)/(N+1));
+    v(i-1) = (sin((i*i*M_PI)/(N+1)));
   }
 
   arma::vec v_norm = normalise(v);
 
-  std::cout << v_norm;
+  std::cout << '\n' << lambda << '\n';
   // for matrices with real elements
 
   arma::vec eigval;
@@ -60,8 +60,8 @@ int main()
 
   eig_sym(eigval, eigvec, A);
 
-  std::cout << eigval;
-  std::cout << eigvec;
+  std::cout << eigval << '\n';
+  std::cout << eigvec << '\n';
 
 
   return 0;
