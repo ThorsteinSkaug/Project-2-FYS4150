@@ -39,29 +39,33 @@ int main()
       }
     }
   }
-  std::cout << A;
+  std::cout << '\n' << "This is the original matrix: " << '\n' <<  A << '\n';
 
 
   //Analytical soultion of lambda and v:
   arma::vec lambda(N);
-  arma::vec v(N);
+  arma::mat v(N, N);
+
   for(int i=1; i<=N; i++){
-    lambda(i-1) = d + 2*a*cos((i*M_PI)/(N+1));
-    v(i-1) = (sin((i*i*M_PI)/(N+1)));
+    lambda(i-1) = d + 2*a*cos((i*M_PI)/(N+1)); //Calculate the analytical eigenvalue values
+    for(int j=1; j<=N; j++){
+      v(j-1, i-1) = (sin((j*i*M_PI)/(N+1))); //Calculate the analytical eigenvector values
+    }
+    v.col(i-1) = normalise(v.col(i-1)); //Normalise the columns in v
   }
 
-  arma::vec v_norm = normalise(v);
 
-  std::cout << '\n' << lambda << '\n';
-  // for matrices with real elements
+  std::cout << "This is the analytical solution of the eigenvalues: " << "\n" <<lambda << "\n";
+  std::cout << "This is the analytical solution of the eigenvectors: " << "\n "<< v << "\n";
 
+  //armadillos soultion
   arma::vec eigval;
   arma::mat eigvec;
 
-  eig_sym(eigval, eigvec, A);
+  eig_sym(eigval, eigvec, A); //Solve it using armadillo
 
-  std::cout << eigval << '\n';
-  std::cout << eigvec << '\n';
+  std::cout << "This is the armadillo solution of the eigenvalues: " << "\n" <<eigval << "\n";
+  std::cout << "This is the armadillo solution of the eigenvectors: " << "\n "<< eigvec << "\n";
 
 
   return 0;
