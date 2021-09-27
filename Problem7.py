@@ -21,7 +21,7 @@ for i in [9,99]:
     ax[j].plot(x,vec1, label=r'$\vec{v_1}$ for $\lambda_1$')
     ax[j].plot(x,vec2, label=r'$\vec{v_2}$ for $\lambda_2$')
     ax[j].plot(x,vec3, label=r'$\vec{v_3}$ for $\lambda_3$')
-    ax[j].set_xlabel(r'Position $\hat{x}$'
+    ax[j].set_xlabel(r'Position $\hat{x}$')
     ax[j].set_ylabel('Vector elements')
     ax[j].set_title(f'n={i+1}')
     ax[j].legend()
